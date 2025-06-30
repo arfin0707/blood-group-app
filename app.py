@@ -16,7 +16,7 @@ def load_model():
     import os
     import gdown
 
-    MODEL_URL = 'https://drive.google.com/uc?id=1AbCDEF123456789'  # your real ID
+    MODEL_URL = 'https://drive.google.com/file/d/1lMplGh8eLhXRNSM6I2AMgyZM4s754xJE/view?usp=sharing'  # your real ID
 
     def download_model():
         if not os.path.exists("model.pth"):
