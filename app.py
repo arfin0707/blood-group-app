@@ -39,5 +39,6 @@ if uploaded_file is not None:
     with torch.no_grad():
         outputs = model(input_tensor)
         _, predicted = torch.max(outputs, 1)
-        class_names = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']
+        #class_names = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']
+        class_names = ['A-', 'A+', 'AB-', 'AB+', 'B-', 'B+', 'O-', 'O+']
         st.success(f"Predicted Blood Group: **{class_names[predicted.item()]}**")
