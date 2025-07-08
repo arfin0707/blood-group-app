@@ -58,4 +58,4 @@ if uploaded_file is not None:
         outputs = model(input_tensor)
         _, predicted = torch.max(outputs, 1)
         predicted_label = idx_to_class[predicted.item()]
-        st.success(f"Predicted Blood Group: **{predicted_label}**"**_**
+        st.success(f"Predicted Blood Group: **{predicted_label}**")
