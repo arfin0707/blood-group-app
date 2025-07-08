@@ -45,7 +45,8 @@ model, idx_to_class = load_model()
 
 st.title("🩸 Blood Group Prediction")
 
-uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
+#uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
+uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png", "svg", "bmp"])
 
 if uploaded_file is not None:
     image = Image.open(uploaded_file).convert("RGB")
