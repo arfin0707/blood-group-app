@@ -7,7 +7,8 @@ import gdown
 import os
 
 # ✅ 1. Updated MODEL_URL (Trained model contains both weights + class_to_idx)
-MODEL_URL = "MODEL_URL = "https://drive.google.com/uc?id=137jjKhFD9iWXBppsfUaCtHOVkNHrb1mn"
+MODEL_URL = "https://drive.google.com/uc?id=137jjKhFD9iWXBppsfUaCtHOVkNHrb1mn"
+
 # https://drive.google.com/file/d/137jjKhFD9iWXBppsfUaCtHOVkNHrb1mn/view?usp=sharing
 
 @st.cache_resource
