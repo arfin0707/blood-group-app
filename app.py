@@ -51,8 +51,8 @@ st.title("🩸 Blood Group Prediction")
 # Small font details below the title
 st.markdown(
     """
-    <p style='font-size: 14px; color: gray;'>
-        Used ConvNeXt-Tiny
+    <p style='font-size: 14px; color: white;'>
+        Used ConvNeXt-Tiny <br>
         Total images: 4480<br>
         Number of training images: 3584<br>
         Number of testing images: 896
