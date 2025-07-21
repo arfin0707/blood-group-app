@@ -43,7 +43,23 @@ def load_model():
 # Load model once (cached)
 model, idx_to_class = load_model()
 
-st.title("🩸 Blood Group Prediction")
+# st.title("🩸 Blood Group Prediction (used ")
+import streamlit as st
+
+st.title("🩸 Blood Group Prediction (used ConvNeXt-Tiny)")
+
+# Small font details below the title
+st.markdown(
+    """
+    <p style='font-size: 12px; color: gray;'>
+        Total images: 4480<br>
+        Number of training images: 3584<br>
+        Number of testing images: 896
+    </p>
+    """,
+    unsafe_allow_html=True
+)
+
 
 #uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
 uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png", "svg", "bmp"])
