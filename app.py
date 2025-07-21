@@ -46,12 +46,13 @@ model, idx_to_class = load_model()
 # st.title("🩸 Blood Group Prediction (used ")
 import streamlit as st
 
-st.title("🩸 Blood Group Prediction (used ConvNeXt-Tiny)")
+st.title("🩸 Blood Group Prediction")
 
 # Small font details below the title
 st.markdown(
     """
-    <p style='font-size: 12px; color: gray;'>
+    <p style='font-size: 14px; color: gray;'>
+        Used ConvNeXt-Tiny
         Total images: 4480<br>
         Number of training images: 3584<br>
         Number of testing images: 896
