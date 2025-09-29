@@ -8,68 +8,76 @@ import gdown
 import os
 
 # Custom page config
+# Force Streamlit light theme
 st.set_page_config(
     page_title="Blood Group Prediction",
     page_icon="🩸",
     layout="centered",
+    initial_sidebar_state="expanded"
 )
 
-
+# Custom CSS
 st.markdown(
     """
     <style>
-        /* App background */
+        /* =======================
+           GLOBAL THEME FIX
+        ======================= */
         .stApp {
-            background-color: #f4f6f9;   /* light grey */
+            background-color: #f4f6f9 !important;  /* light grey background */
+            color: #000000 !important;             /* black text */
         }
 
-        /* Reset all blur/filters */
-        * {
-            text-shadow: none !important;
-            filter: none !important;
-            backdrop-filter: none !important;
-            -webkit-backdrop-filter: none !important;
+        header, .st-emotion-cache-18ni7ap, .st-emotion-cache-12fmjuu {
+            background-color: #ffffff !important;  /* make top header white */
+            color: #000000 !important;             /* black icons/text */
         }
 
-        /* Keep all text crisp */
-        body, p, div, span, label, h1, h2, h3, h4, h5, h6 {
-            color: #000000 !important;
-        }
-
-        /* Title */
+        /* =======================
+           TITLE
+        ======================= */
         h1 {
-            color: #003366 !important;   /* dark navy blue */
+            color: #003366 !important;  /* navy blue */
             text-align: center !important;
             font-weight: bold !important;
         }
 
-        /* File uploader box */
+        /* =======================
+           FILE UPLOADER
+        ======================= */
         .stFileUploader {
-            background-color: #ffffff !important;  /* clean white box */
+            background-color: #ffffff !important;
             border: 2px solid #cccccc !important;
             border-radius: 8px !important;
             box-shadow: none !important;
             padding: 12px !important;
         }
 
-        /* File uploader button */
+        /* Drag-and-drop area */
+        .stFileUploader div div {
+            background-color: #f9f9f9 !important;
+            color: #000000 !important;
+            border: 1px dashed #cccccc !important;
+            border-radius: 6px !important;
+        }
+
+        /* Browse button */
         .stFileUploader button {
-            background-color: #f0f0f0 !important;  /* light grey button */
+            background-color: #e0e0e0 !important;  /* light grey */
             color: #000000 !important;             /* black text */
-            border: 1px solid #999999 !important;  /* subtle border */
+            border: 1px solid #999999 !important;
             border-radius: 5px !important;
             padding: 6px 20px !important;
             font-weight: 500 !important;
-            cursor: pointer !important;
         }
-
-        /* File uploader button hover */
         .stFileUploader button:hover {
-            background-color: #e0e0e0 !important;  /* slightly darker grey */
+            background-color: #d5d5d5 !important;
             color: #000000 !important;
         }
 
-        /* Prediction success box */
+        /* =======================
+           SUCCESS BOX
+        ======================= */
         .stSuccess {
             background-color: #e6f4ea !important;
             border-left: 5px solid #2e7d32 !important;
