@@ -13,6 +13,8 @@ st.set_page_config(
     page_icon="🩸",
     layout="centered",
 )
+
+
 st.markdown(
     """
     <style>
@@ -21,7 +23,7 @@ st.markdown(
             background-color: #f4f6f9;   /* light grey */
         }
 
-        /* Remove all blur and filters globally */
+        /* Reset all blur/filters */
         * {
             text-shadow: none !important;
             filter: none !important;
@@ -36,35 +38,35 @@ st.markdown(
 
         /* Title */
         h1 {
-            color: #8B0000 !important;   /* dark red */
+            color: #003366 !important;   /* dark navy blue */
             text-align: center !important;
             font-weight: bold !important;
         }
 
         /* File uploader box */
         .stFileUploader {
-            background-color: #ffffff !important;  /* white box */
-            border: 2px solid #cccccc !important;  /* light grey border */
+            background-color: #ffffff !important;  /* clean white box */
+            border: 2px solid #cccccc !important;
             border-radius: 8px !important;
             box-shadow: none !important;
-            padding: 10px !important;
+            padding: 12px !important;
         }
 
         /* File uploader button */
         .stFileUploader button {
-            background-color: #8B0000 !important;  /* dark red button */
-            color: #ffffff !important;             /* white text */
-            border: none !important;
+            background-color: #f0f0f0 !important;  /* light grey button */
+            color: #000000 !important;             /* black text */
+            border: 1px solid #999999 !important;  /* subtle border */
             border-radius: 5px !important;
             padding: 6px 20px !important;
-            font-weight: bold !important;
+            font-weight: 500 !important;
             cursor: pointer !important;
         }
 
         /* File uploader button hover */
         .stFileUploader button:hover {
-            background-color: #a50000 !important;  /* slightly lighter red */
-            color: #ffffff !important;
+            background-color: #e0e0e0 !important;  /* slightly darker grey */
+            color: #000000 !important;
         }
 
         /* Prediction success box */
@@ -81,6 +83,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
 
 
 
