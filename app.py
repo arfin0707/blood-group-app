@@ -1,4 +1,3 @@
-
 import streamlit as st
 import torch
 import torch.nn as nn
@@ -7,78 +6,89 @@ from PIL import Image
 import gdown
 import os
 
-# Custom page config
-# Force Streamlit light theme
+# ----------------------------
+# Page Config
+# ----------------------------
 st.set_page_config(
     page_title="Blood Group Prediction",
     page_icon="🩸",
     layout="centered",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="collapsed"
 )
 
+# ----------------------------
 # Custom CSS
+# ----------------------------
 st.markdown(
     """
     <style>
-        /* =======================
-           GLOBAL THEME FIX
-        ======================= */
+        /* Global background & text */
         .stApp {
-            background-color: #f4f6f9 !important;  /* light grey background */
-            color: #000000 !important;             /* black text everywhere */
+            background-color: #f4f6f9 !important;
+            color: #000000 !important;
         }
 
-        /* Fix top header bar */
-        header, [data-testid="stHeader"] {
-            background-color: #ffffff !important;  /* white top bar */
-            color: #000000 !important;             /* black text/icons */
+        /* Top header white */
+        header, .st-emotion-cache-18ni7ap, .st-emotion-cache-12fmjuu {
+            background-color: #ffffff !important;
+            color: #000000 !important;
         }
 
-        /* =======================
-           TITLE
-        ======================= */
+        /* Title */
         h1 {
-            color: #003366 !important;  /* navy blue */
+            color: #003366 !important;
             text-align: center !important;
             font-weight: bold !important;
         }
 
-        /* =======================
-           FILE UPLOADER BOX
-        ======================= */
+        /* Info card (model details) */
+        .info-box {
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 14px;
+            color: #000000;
+        }
+
+        /* File uploader */
         .stFileUploader {
             background-color: #ffffff !important;
             border: 2px solid #cccccc !important;
             border-radius: 8px !important;
             padding: 12px !important;
-            color: #000000 !important;
+            color: #000000 !important;   
         }
 
-        /* Drag-and-drop area */
-        .stFileUploader div[data-testid="stFileUploaderDropzone"] {
-            background-color: #f9f9f9 !important;   /* light grey */
+        .stFileUploader div div {
+            background-color: #f9f9f9 !important;
             color: #000000 !important;
             border: 1px dashed #cccccc !important;
             border-radius: 6px !important;
         }
 
+        /* Fix file name visibility */
+        .stFileUploader label, .stFileUploader div, .stFileUploader span {
+            color: #000000 !important;
+        }
+
         /* Browse button */
         .stFileUploader button {
-            background-color: #f0f0f0 !important;  /* light grey */
-            color: #000000 !important;             /* black text */
+            background-color: #e0e0e0 !important;
+            color: #000000 !important;
             border: 1px solid #999999 !important;
             border-radius: 5px !important;
             padding: 6px 20px !important;
             font-weight: 500 !important;
         }
         .stFileUploader button:hover {
-            background-color: #e0e0e0 !important;
+            background-color: #d5d5d5 !important;
             color: #000000 !important;
         }
 
-        /* =======================
-           SUCCESS BOX
-        ======================= */
+        /* Success box */
         .stSuccess {
             background-color: #e6f4ea !important;
             border-left: 5px solid #2e7d32 !important;
@@ -86,21 +96,16 @@ st.markdown(
             font-size: 18px !important;
             font-weight: 500 !important;
             color: #000000 !important;
-            box-shadow: none !important;
         }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-
-
-
-# ===============================
-# Updated Model Link and Filename
-# ===============================
+# ----------------------------
+# Model Setup
+# ----------------------------
 MODEL_URL = "https://drive.google.com/uc?id=15HH0A3-W8aWO2epgnH8OEsDNAQsX9au8"
-# https://drive.google.com/file/d/15HH0A3-W8aWO2epgnH8OEsDNAQsX9au8/view?usp=sharing
 MODEL_FILENAME = "convnext_model_base.pth"
 
 @st.cache_resource
@@ -108,20 +113,17 @@ def load_model():
     if not os.path.exists(MODEL_FILENAME):
         gdown.download(MODEL_URL, MODEL_FILENAME, quiet=False)
 
-    # Load pretrained ConvNeXt-Base
     model = convnext_base(weights=ConvNeXt_Base_Weights.DEFAULT)
     num_ftrs = model.classifier[2].in_features
     model.classifier[2] = nn.Sequential(
-        nn.Dropout(0.5),   # consistent with your training script
+        nn.Dropout(0.5),
         nn.Linear(num_ftrs, 8)
     )
 
-    # Load checkpoint
     checkpoint = torch.load(MODEL_FILENAME, map_location="cpu")
     model.load_state_dict(checkpoint['model_state_dict'])
     model.eval()
 
-    # Class mapping
     class_to_idx = checkpoint.get('class_to_idx', {
         'A+': 0, 'A-': 1, 'AB+': 2, 'AB-': 3,
         'B+': 4, 'B-': 5, 'O+': 6, 'O-': 7
@@ -130,22 +132,22 @@ def load_model():
 
     return model, idx_to_class
 
-# Load model (cached)
 model, idx_to_class = load_model()
 
-# ===============================
-# Streamlit UI
-# ===============================
+# ----------------------------
+# UI
+# ----------------------------
 st.title("🩸 Blood Group Prediction")
 
+# Info box
 st.markdown(
     """
-    <p style='font-size: 14px; color: white;'>
-        Using ConvNeXt-Base <br>
+    <div class="info-box">
+        <b>Using ConvNeXt-Base</b><br>
         Total images: 8000 <br>
         Training images: 6400 <br>
         Testing images: 1600
-    </p>
+    </div>
     """,
     unsafe_allow_html=True
 )
@@ -155,113 +157,13 @@ uploaded_file = st.file_uploader("Upload a fingerprint image", type=["jpg", "jpe
 
 if uploaded_file is not None:
     image = Image.open(uploaded_file).convert("RGB")
-    # st.image(image, caption="Uploaded Image", use_container_width=True)
     st.image(image, caption="Uploaded Image", width=250)
 
-    # Apply ConvNeXt-Base default transforms
     transform = ConvNeXt_Base_Weights.DEFAULT.transforms()
     input_tensor = transform(image).unsqueeze(0)
 
-    # Inference
     with torch.no_grad():
         outputs = model(input_tensor)
         _, predicted = torch.max(outputs, 1)
         predicted_label = idx_to_class[predicted.item()]
         st.success(f"Predicted Blood Group: **{predicted_label}**")
-
-
-
-
-
-
-
-
-#convnext-tiny
-# import streamlit as st
-# import torch
-# import torch.nn as nn
-# from torchvision.models import convnext_tiny, ConvNeXt_Tiny_Weights
-# from PIL import Image
-# import gdown
-# import os
-
-# # Use consistent filename
-# MODEL_URL = "https://drive.google.com/uc?id=137jjKhFD9iWXBppsfUaCtHOVkNHrb1mn"
-# MODEL_FILENAME = "convnext_model.pth"
-
-# @st.cache_resource
-# def load_model():
-#     if not os.path.exists(MODEL_FILENAME):
-#         gdown.download(MODEL_URL, MODEL_FILENAME, quiet=False)
-
-#     # Load the base model architecture with pretrained weights
-#     model = convnext_tiny(weights=ConvNeXt_Tiny_Weights.DEFAULT)
-#     num_ftrs = model.classifier[2].in_features
-#     # Replace final layer to match your 8 blood group classes
-#     model.classifier[2] = nn.Sequential(
-#         nn.Dropout(0.4),
-#         nn.Linear(num_ftrs, 8)
-#     )
-
-#     # Load checkpoint (expects dict with model_state_dict and class_to_idx)
-#     checkpoint = torch.load(MODEL_FILENAME, map_location='cpu')
-#     model.load_state_dict(checkpoint['model_state_dict'])
-#     model.eval()
-
-#     # Get class_to_idx dictionary from checkpoint or fallback default
-#     class_to_idx = checkpoint.get('class_to_idx', {
-#         'A+': 0, 'A-': 1, 'AB+': 2, 'AB-': 3,
-#         'B+': 4, 'B-': 5, 'O+': 6, 'O-': 7
-#     })
-
-#     # Invert dict: idx -> class label
-#     idx_to_class = {v: k for k, v in class_to_idx.items()}
-
-#     return model, idx_to_class
-
-# # Load model once (cached)
-# model, idx_to_class = load_model()
-
-# # st.title("🩸 Blood Group Prediction (used ")
-# import streamlit as st
-
-# st.title("🩸 Blood Group Prediction")
-
-# # Small font details below the title
-# st.markdown(
-#     """
-#     <p style='font-size: 14px; color: white;'>
-#         Used ConvNeXt-Tiny <br>
-#         Total images: 4480<br>
-#         Number of training images: 3584<br>
-#         Number of testing images: 896
-#     </p>
-#     """,
-#     unsafe_allow_html=True
-# )
-
-
-# #uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
-# uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png", "svg", "bmp"])
-
-# if uploaded_file is not None:
-#     image = Image.open(uploaded_file).convert("RGB")
-#     st.image(image, caption="Uploaded Image", use_container_width=True)
-
-#     transform = ConvNeXt_Tiny_Weights.DEFAULT.transforms()
-#     # transform = transforms.Compose([
-#     # transforms.Resize((224, 224)),
-#     # transforms.RandomHorizontalFlip(),
-#     # transforms.RandomRotation(10),
-#     # transforms.ColorJitter(),
-#     # transforms.ToTensor(),
-#     # transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
-#     # ])
-    
-#     input_tensor = transform(image).unsqueeze(0)
-
-#     with torch.no_grad():
-#         outputs = model(input_tensor)
-#         _, predicted = torch.max(outputs, 1)
-#         predicted_label = idx_to_class[predicted.item()]
-#         st.success(f"Predicted Blood Group: **{predicted_label}**")
