@@ -7,6 +7,41 @@ from PIL import Image
 import gdown
 import os
 
+# Custom page config
+st.set_page_config(
+    page_title="Blood Group Prediction",
+    page_icon="🩸",
+    layout="centered",
+)
+
+# Custom CSS for background and text
+st.markdown(
+    """
+    <style>
+        /* Set background color */
+        .stApp {
+            background-color: #f4f6f9;  /* Light greyish-blue for a professional look */
+        }
+
+        /* Title styling */
+        h1 {
+            color: #b30000;  /* Deep red for blood-related theme */
+            text-align: center;
+        }
+
+        /* Success box (prediction) */
+        .stSuccess {
+            background-color: #e6f4ea;  /* light green */
+            border-left: 5px solid #28a745; /* green border */
+            padding: 10px;
+            font-size: 18px;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+
 # ===============================
 # Updated Model Link and Filename
 # ===============================
