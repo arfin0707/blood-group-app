@@ -18,10 +18,10 @@ st.markdown(
     <style>
         /* App background */
         .stApp {
-            background-color: #f4f6f9;   /* professional light grey */
+            background-color: #f4f6f9;   /* light grey */
         }
 
-        /* Reset any blur or shadow globally */
+        /* Remove all blur and filters globally */
         * {
             text-shadow: none !important;
             filter: none !important;
@@ -34,22 +34,40 @@ st.markdown(
             color: #000000 !important;
         }
 
-        /* Header title */
+        /* Title */
         h1 {
             color: #8B0000 !important;   /* dark red */
             text-align: center !important;
             font-weight: bold !important;
         }
 
-        /* Upload box (file uploader) */
+        /* File uploader box */
         .stFileUploader {
-            background-color: #ffffff !important;  /* white background */
+            background-color: #ffffff !important;  /* white box */
             border: 2px solid #cccccc !important;  /* light grey border */
             border-radius: 8px !important;
             box-shadow: none !important;
+            padding: 10px !important;
         }
 
-        /* Prediction result box */
+        /* File uploader button */
+        .stFileUploader button {
+            background-color: #8B0000 !important;  /* dark red button */
+            color: #ffffff !important;             /* white text */
+            border: none !important;
+            border-radius: 5px !important;
+            padding: 6px 20px !important;
+            font-weight: bold !important;
+            cursor: pointer !important;
+        }
+
+        /* File uploader button hover */
+        .stFileUploader button:hover {
+            background-color: #a50000 !important;  /* slightly lighter red */
+            color: #ffffff !important;
+        }
+
+        /* Prediction success box */
         .stSuccess {
             background-color: #e6f4ea !important;
             border-left: 5px solid #2e7d32 !important;
@@ -63,6 +81,8 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
+
 
 # ===============================
 # Updated Model Link and Filename
