@@ -18,24 +18,38 @@ st.markdown(
     <style>
         /* App background */
         .stApp {
-            background-color: #f4f6f9;   /* light grey background */
+            background-color: #f4f6f9;   /* professional light grey */
         }
 
-        /* Keep all text sharp */
-        body, p, div, span, label {
-            color: #000000 !important;   /* force black text */
+        /* Reset any blur or shadow globally */
+        * {
             text-shadow: none !important;
             filter: none !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
         }
 
-        /* Title styling */
+        /* Keep all text crisp */
+        body, p, div, span, label, h1, h2, h3, h4, h5, h6 {
+            color: #000000 !important;
+        }
+
+        /* Header title */
         h1 {
             color: #8B0000 !important;   /* dark red */
             text-align: center !important;
             font-weight: bold !important;
         }
 
-        /* Success (prediction) box */
+        /* Upload box (file uploader) */
+        .stFileUploader {
+            background-color: #ffffff !important;  /* white background */
+            border: 2px solid #cccccc !important;  /* light grey border */
+            border-radius: 8px !important;
+            box-shadow: none !important;
+        }
+
+        /* Prediction result box */
         .stSuccess {
             background-color: #e6f4ea !important;
             border-left: 5px solid #2e7d32 !important;
@@ -43,6 +57,7 @@ st.markdown(
             font-size: 18px !important;
             font-weight: 500 !important;
             color: #000000 !important;
+            box-shadow: none !important;
         }
     </style>
     """,
