@@ -169,7 +169,7 @@ model, idx_to_class = load_model()
 # ===============================
 st.title("🩸 Blood Group Prediction")
 
-    # <p style='font-size: 14px; color: white;'>
+    # <p style='font-size: 14px; color: black;'>
     #     Using ConvNeXt-Base <br>
     #     Total images: 8000 <br>
     #     Training images: 6400 <br>
@@ -177,7 +177,7 @@ st.title("🩸 Blood Group Prediction")
     # </p>
 st.markdown(
     """
-    <p style='font-size: 14px; color: black;'>
+    <p style='font-size: 14px; color: white;'>
         Using ConvNeXt-Base <br>
         Total images: 8000 <br>
         Training images: 6400 <br>
