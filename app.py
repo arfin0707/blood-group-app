@@ -25,12 +25,13 @@ st.markdown(
         ======================= */
         .stApp {
             background-color: #f4f6f9 !important;  /* light grey background */
-            color: #000000 !important;             /* black text */
+            color: #000000 !important;             /* black text everywhere */
         }
 
-        header, .st-emotion-cache-18ni7ap, .st-emotion-cache-12fmjuu {
-            background-color: #ffffff !important;  /* make top header white */
-            color: #000000 !important;             /* black icons/text */
+        /* Fix top header bar */
+        header, [data-testid="stHeader"] {
+            background-color: #ffffff !important;  /* white top bar */
+            color: #000000 !important;             /* black text/icons */
         }
 
         /* =======================
@@ -43,20 +44,19 @@ st.markdown(
         }
 
         /* =======================
-           FILE UPLOADER
+           FILE UPLOADER BOX
         ======================= */
         .stFileUploader {
             background-color: #ffffff !important;
             border: 2px solid #cccccc !important;
             border-radius: 8px !important;
-            box-shadow: none !important;
             padding: 12px !important;
-            color: #000000 !important;   
+            color: #000000 !important;
         }
 
         /* Drag-and-drop area */
-        .stFileUploader div div {
-            background-color: #f9f9f9 !important;
+        .stFileUploader div[data-testid="stFileUploaderDropzone"] {
+            background-color: #f9f9f9 !important;   /* light grey */
             color: #000000 !important;
             border: 1px dashed #cccccc !important;
             border-radius: 6px !important;
@@ -64,7 +64,7 @@ st.markdown(
 
         /* Browse button */
         .stFileUploader button {
-            background-color: #e0e0e0 !important;  /* light grey */
+            background-color: #f0f0f0 !important;  /* light grey */
             color: #000000 !important;             /* black text */
             border: 1px solid #999999 !important;
             border-radius: 5px !important;
@@ -72,7 +72,7 @@ st.markdown(
             font-weight: 500 !important;
         }
         .stFileUploader button:hover {
-            background-color: #d5d5d5 !important;
+            background-color: #e0e0e0 !important;
             color: #000000 !important;
         }
 
