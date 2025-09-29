@@ -68,14 +68,6 @@ if uploaded_file is not None:
     image = Image.open(uploaded_file).convert("RGB")
     # st.image(image, caption="Uploaded Image", use_container_width=True)
     st.image(image, caption="Uploaded Image", width=250)
-    col1, col2 = st.columns([1, 2])  # adjust ratio if needed
-    
-    with col1:
-        st.image(image, caption="Uploaded Image", width=200)
-    
-    with col2:
-        st.success(f"Predicted Blood Group: **{predicted_label}**")
-    
 
     # Apply ConvNeXt-Base default transforms
     transform = ConvNeXt_Base_Weights.DEFAULT.transforms()
