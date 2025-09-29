@@ -51,6 +51,7 @@ st.markdown(
             border-radius: 8px !important;
             box-shadow: none !important;
             padding: 12px !important;
+            color: #000000 !important;   
         }
 
         /* Drag-and-drop area */
