@@ -177,7 +177,7 @@ st.title("🩸 Blood Group Prediction")
     # </p>
 st.markdown(
     """
-    <p style='font-size: 14px; color: white;'>
+    <p style='font-size: 14px;'>
         Using ConvNeXt-Base <br>
         Total images: 8000 <br>
         Training images: 6400 <br>
