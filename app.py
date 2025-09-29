@@ -8,121 +8,121 @@ import gdown
 import os
 
 # Custom page config
-# Force Streamlit light theme
-st.set_page_config(
-    page_title="Blood Group Prediction",
-    page_icon="🩸",
-    layout="centered",
-    initial_sidebar_state="expanded"
-)
+# # Force Streamlit light theme
+# st.set_page_config(
+#     page_title="Blood Group Prediction",
+#     page_icon="🩸",
+#     layout="centered",
+#     initial_sidebar_state="expanded"
+# )
 
-# Custom CSS
-st.markdown(
-    """
-    <style>
-        /* =======================
-           GLOBAL THEME FIX
-        ======================= */
-        .stApp {
-            background-color: #f4f6f9 !important;  /* light grey background */
-            color: #000000 !important;             /* black text */
-        }
+# # Custom CSS
+# st.markdown(
+#     """
+#     <style>
+#         /* =======================
+#            GLOBAL THEME FIX
+#         ======================= */
+#         .stApp {
+#             background-color: #f4f6f9 !important;  /* light grey background */
+#             color: #000000 !important;             /* black text */
+#         }
 
-        header, .st-emotion-cache-18ni7ap, .st-emotion-cache-12fmjuu {
-            background-color: #ffffff !important;  /* make top header white */
-            color: #000000 !important;             /* black icons/text */
-        }
+#         header, .st-emotion-cache-18ni7ap, .st-emotion-cache-12fmjuu {
+#             background-color: #ffffff !important;  /* make top header white */
+#             color: #000000 !important;             /* black icons/text */
+#         }
 
-        /* =======================
-           TITLE
-        ======================= */
-        h1 {
-            color: #003366 !important;  /* navy blue */
-            text-align: center !important;
-            font-weight: bold !important;
-        }
+#         /* =======================
+#            TITLE
+#         ======================= */
+#         h1 {
+#             color: #003366 !important;  /* navy blue */
+#             text-align: center !important;
+#             font-weight: bold !important;
+#         }
 
-        /* =======================
-           FILE UPLOADER
-        ======================= */
+#         /* =======================
+#            FILE UPLOADER
+#         ======================= */
 
-        /* FILE UPLOADER - Outer Box */
-.stFileUploader {
-    background-color: #ffffff !important;
-    border: 2px solid #cccccc !important;
-    border-radius: 8px !important;
-    box-shadow: none !important;
-    padding: 12px !important;
-    color: #000000 !important;
-}
+#         /* FILE UPLOADER - Outer Box */
+# .stFileUploader {
+#     background-color: #ffffff !important;
+#     border: 2px solid #cccccc !important;
+#     border-radius: 8px !important;
+#     box-shadow: none !important;
+#     padding: 12px !important;
+#     color: #000000 !important;
+# }
 
-/* FILE UPLOADER - Drag-and-drop area */
-.stFileUploader div div {
-    background-color: #ffffff !important;  /* white background */
-    color: #000000 !important;             /* black text */
-    border: 1px dashed #cccccc !important;
-    border-radius: 6px !important;
-    text-align: center !important;
-    font-weight: 500 !important;
-}
+# /* FILE UPLOADER - Drag-and-drop area */
+# .stFileUploader div div {
+#     background-color: #ffffff !important;  /* white background */
+#     color: #000000 !important;             /* black text */
+#     border: 1px dashed #cccccc !important;
+#     border-radius: 6px !important;
+#     text-align: center !important;
+#     font-weight: 500 !important;
+# }
 
-/* FILE UPLOADER - Browse Button */
-.stFileUploader button {
-    background-color: #e0e0e0 !important;
-    color: #000000 !important;
-    border: 1px solid #999999 !important;
-    border-radius: 5px !important;
-    padding: 6px 20px !important;
-    font-weight: 500 !important;
-}
-.stFileUploader button:hover {
-    background-color: #d5d5d5 !important;
-    color: #000000 !important;
-}
+# /* FILE UPLOADER - Browse Button */
+# .stFileUploader button {
+#     background-color: #e0e0e0 !important;
+#     color: #000000 !important;
+#     border: 1px solid #999999 !important;
+#     border-radius: 5px !important;
+#     padding: 6px 20px !important;
+#     font-weight: 500 !important;
+# }
+# .stFileUploader button:hover {
+#     background-color: #d5d5d5 !important;
+#     color: #000000 !important;
+# }
 
 
-        /* =======================
-           SUCCESS BOX
-        ======================= */
-        .stSuccess {
-            background-color: #e6f4ea !important;
-            border-left: 5px solid #2e7d32 !important;
-            padding: 10px !important;
-            font-size: 18px !important;
-            font-weight: 500 !important;
-            color: #000000 !important;
-            box-shadow: none !important;
-        }
+#         /* =======================
+#            SUCCESS BOX
+#         ======================= */
+#         .stSuccess {
+#             background-color: #e6f4ea !important;
+#             border-left: 5px solid #2e7d32 !important;
+#             padding: 10px !important;
+#             font-size: 18px !important;
+#             font-weight: 500 !important;
+#             color: #000000 !important;
+#             box-shadow: none !important;
+#         }
 
-        /* =======================
-   IMAGE CAPTION FIX
-======================= */
-.stImage figcaption {
-    color: #000000 !important;   /* make caption black */
-    font-size: 14px !important;
-    text-align: center !important;
-}
+#         /* =======================
+#    IMAGE CAPTION FIX
+# ======================= */
+# .stImage figcaption {
+#     color: #000000 !important;   /* make caption black */
+#     font-size: 14px !important;
+#     text-align: center !important;
+# }
 
-/* Make image captions black */
-.stImage figcaption {
-    color: #000000 !important;
-    font-size: 14px !important;
-    font-weight: 500 !important;
-    text-align: center !important;
-}
+# /* Make image captions black */
+# .stImage figcaption {
+#     color: #000000 !important;
+#     font-size: 14px !important;
+#     font-weight: 500 !important;
+#     text-align: center !important;
+# }
 
-/* Fix text inside file uploader */
-.stFileUploader label, 
-.stFileUploader div, 
-.stFileUploader span, 
-.stFileUploader p {
-    color: #000000 !important;
-}
+# /* Fix text inside file uploader */
+# .stFileUploader label, 
+# .stFileUploader div, 
+# .stFileUploader span, 
+# .stFileUploader p {
+#     color: #000000 !important;
+# }
 
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+#     </style>
+#     """,
+#     unsafe_allow_html=True
+# )
 
 
 
