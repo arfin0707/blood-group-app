@@ -53,15 +53,19 @@ st.markdown(
             color: #000000;
         }
 
-        /* File uploader */
+               /* =======================
+           FILE UPLOADER
+        ======================= */
         .stFileUploader {
             background-color: #ffffff !important;
             border: 2px solid #cccccc !important;
             border-radius: 8px !important;
+            box-shadow: none !important;
             padding: 12px !important;
             color: #000000 !important;   
         }
 
+        /* Drag-and-drop area */
         .stFileUploader div div {
             background-color: #f9f9f9 !important;
             color: #000000 !important;
@@ -69,15 +73,10 @@ st.markdown(
             border-radius: 6px !important;
         }
 
-        /* Fix file name visibility */
-        .stFileUploader label, .stFileUploader div, .stFileUploader span {
-            color: #000000 !important;
-        }
-
         /* Browse button */
         .stFileUploader button {
-            background-color: #e0e0e0 !important;
-            color: #000000 !important;
+            background-color: #e0e0e0 !important;  /* light grey */
+            color: #000000 !important;             /* black text */
             border: 1px solid #999999 !important;
             border-radius: 5px !important;
             padding: 6px 20px !important;
@@ -87,6 +86,25 @@ st.markdown(
             background-color: #d5d5d5 !important;
             color: #000000 !important;
         }
+
+        /* Fix file name visibility */
+        .stFileUploader label, .stFileUploader div, .stFileUploader span {
+            color: #000000 !important;
+        }
+
+        # /* Browse button */
+        # .stFileUploader button {
+        #     background-color: #e0e0e0 !important;
+        #     color: #000000 !important;
+        #     border: 1px solid #999999 !important;
+        #     border-radius: 5px !important;
+        #     padding: 6px 20px !important;
+        #     font-weight: 500 !important;
+        # }
+        # .stFileUploader button:hover {
+        #     background-color: #d5d5d5 !important;
+        #     color: #000000 !important;
+        # }
 
         /* Success box */
         .stSuccess {
