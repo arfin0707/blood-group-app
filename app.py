@@ -98,6 +98,21 @@ st.markdown(
     text-align: center !important;
 }
 
+/* Make image captions black */
+.stImage figcaption {
+    color: #000000 !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    text-align: center !important;
+}
+
+/* Fix text inside file uploader */
+.stFileUploader label, 
+.stFileUploader div, 
+.stFileUploader span, 
+.stFileUploader p {
+    color: #000000 !important;
+}
 
     </style>
     """,
