@@ -88,6 +88,17 @@ st.markdown(
             color: #000000 !important;
             box-shadow: none !important;
         }
+
+        /* =======================
+   IMAGE CAPTION FIX
+======================= */
+.stImage figcaption {
+    color: #000000 !important;   /* make caption black */
+    font-size: 14px !important;
+    text-align: center !important;
+}
+
+
     </style>
     """,
     unsafe_allow_html=True
@@ -138,9 +149,15 @@ model, idx_to_class = load_model()
 # ===============================
 st.title("🩸 Blood Group Prediction")
 
+    # <p style='font-size: 14px; color: white;'>
+    #     Using ConvNeXt-Base <br>
+    #     Total images: 8000 <br>
+    #     Training images: 6400 <br>
+    #     Testing images: 1600
+    # </p>
 st.markdown(
     """
-    <p style='font-size: 14px; color: white;'>
+    <p style='font-size: 14px; color: black;'>
         Using ConvNeXt-Base <br>
         Total images: 8000 <br>
         Training images: 6400 <br>
