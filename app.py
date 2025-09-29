@@ -16,32 +16,38 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-        /* Set background color without affecting text rendering */
+        /* App background */
         .stApp {
-            background-color: #f4f6f9;   /* clean light grey */
-            color: black;               /* keep text crisp */
+            background-color: #f4f6f9;   /* light grey background */
+        }
+
+        /* Keep all text sharp */
+        body, p, div, span, label {
+            color: #000000 !important;   /* force black text */
+            text-shadow: none !important;
+            filter: none !important;
         }
 
         /* Title styling */
         h1 {
-            color: #8B0000;  /* dark red for a formal theme */
-            text-align: center;
+            color: #8B0000 !important;   /* dark red */
+            text-align: center !important;
+            font-weight: bold !important;
         }
 
-        /* Prediction result box */
+        /* Success (prediction) box */
         .stSuccess {
-            background-color: #e6f4ea !important;  
-            border-left: 5px solid #2e7d32 !important; 
+            background-color: #e6f4ea !important;
+            border-left: 5px solid #2e7d32 !important;
             padding: 10px !important;
             font-size: 18px !important;
             font-weight: 500 !important;
-            color: black !important;
+            color: #000000 !important;
         }
     </style>
     """,
     unsafe_allow_html=True
 )
-
 
 # ===============================
 # Updated Model Link and Filename
